@@ -97,8 +97,12 @@ ENV/
 # mkdocs documentation
 /site
 
+# MAC OS
+.DS_Store
+
 # mypy
 .mypy_cache/
 *mydata/*
+*mytemp/*
 *old/*
 *OLD/*
