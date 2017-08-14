@@ -105,5 +105,5 @@ venv*
 .mypy_cache/
 *mydata/*
 *mytemp/*
-*old/*
+*/old/*
 *OLD/*
