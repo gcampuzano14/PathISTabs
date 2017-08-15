@@ -37,6 +37,7 @@ def inputstuff(title, msg_fileopenbox, file_type, file_extension, msg_enterbox):
     if len(name_project) > 0:
         print("1")
         savedir = os.path.join(savedir, name_project)
+
         # savedir = savedir + "/" + name_project
     else:
         savedir = os.path.join(savedir, default_name + "_")
