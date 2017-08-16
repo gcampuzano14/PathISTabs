@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<link href="/static/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link rel=stylesheet type=text/css	href="{{ url_for('static', filename='style.css') }}">
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" src="/static/js/jquery.elastic.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+</html>
+
+<title>Copath NLS Parser</title>
+
+<div class=page>
+	<div class="page-header" style="display: inline-block"">
+  	<h1>Copath NLS Parser <small></small></h1>
+</div>
+
+<div class="tab-content" style="display: inline-block; text-align: left; float: right">
+	<a href="myModal" data-toggle="modal" data-target="#myModal">Help</a> |
+	<a href="aboutModal" data-toggle="modal" data-target="#aboutModal" ></i>About</a> |
+	<a href="donateModal" data-toggle="modal" data-target="#donateModal"></i>Donate</a>
+</div>
+
+<br> {% for message in get_flashed_messages() %}
+	<div class=flash>{{ message }}</div>
+	{% endfor %} {% block body %}{% endblock %}
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"> 
+	<div class="modal-dialog" role="document" style="width: 27em">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h2>HELP</h2>
+
+				<p>This program will parse text files created from PDF dumps obtained from CoPath Natural Language Search IIa (no race). For additional information contact germancz81@gmail.com.</p>
+
+				<h3>INSTRUCTIONS </h3>
+				<p>1. Copy the contents of the PDF file obtained from a Copath NLS II (no race) search and save the text file (*.txt) in a directory of your preference. </p>
+				<p>2. Fill in the options: text file path, output project name, site and specimen class.</p>
+				<p>3. Run.</p>
+				<p>4. The project will be saved in the "job_output" folder wich will open automatically once the job is done.</p>
+
+				<h3>OUTPUT</h3>
+				<p>1. Tab-delimited text file (/TABDELIM_CASES_OUT_x (x=time serial).txt)<br>
+				SURG_NUM -> ACCESS_DATE -> SIGN_DATE -> SEX -> AGE -> NAME -> MRN_NUM -> MRN -> DIAGNOSIS -> FORMULA (0|1 if keyword present in DIAGNOSIS field)</p>
+				<p>2. JSON formated file with SURG_NUMs as keys (/JSON_CASES_x (x=time serial).txt)<br>
+				[{SURG_NUM: [ACCESS_DATE, SIGN_DATE, SEX, AGE, NAME, MRN_NUM, MRN, DIAGNOSIS],...]],...}]</p>
+				<p>3. JSON formated file with MRNs as keys (/JSON_MRN_x (x=time serial).txt)<br>
+				[{MRN, CASES: [{SURG_NUM, ACCESS_DATE, SIGN_DATE, SEX, AGE, DIAGNOSIS}, {}], NAMES: [NAME1, NAME2,], ALIAS_MRNS: [MRN1, MRN2,] }, {}]</p>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"> 
+	<div class="modal-dialog" role="document" style="width: 30em">
+		<div class="modal-content">
+		<div class="modal-header">
+			
+			<h2>ABOUT</h2><br>
+			<b>Package:</b> Copath Natural language Search Parser<br>
+			<b>Version:</b> 0.2.0<br>
+			<b>Date:</b> September 7, 2015<br>
+			<b>Developer:</b> German Campuzano-Zuluaga<br>
+			<b>Contact:</b> gcampuzano81@gmail.com<br>
+			
+			<b>Source:</b> <a href="https://github.com/gcampuzano14" value="https://github.com/gcampuzano14/CoPath_NLS_Parser">https://github.com/gcampuzano14</a><br>
+			
+			<h3>License </h3>
+					Copyright (C) 2015 GERMAN CAMPUZANO-ZULUAGA This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation,  either version 3 of the License, or  (at your option) any later version.  This program is distributed in the hope that it will be useful,  but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details. You should have received a copy of the GNU General Public License  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+		</div>
+	</div>
+</div>
+		
+<div class="modal fade" id="donateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"> 
+	<div class="modal-dialog" role="document" style="width: 30em">
+		<div class="modal-content">
+			<div class="modal-header">
+
+			<p>I hope this software has contributed in making your work a bit easier. This software is free to use; still, any donations are greatly appreciated.</p>
+			<p>Consider a donation to support updates.</p>
+			<p>An additional <b>Meditech NLS parser</b> is available upon request (germancz81@gmail.com).</p>
+
+				<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+				<input type="hidden" name="cmd" value="_s-xclick">
+				<table>
+				<tr>
+					<td><input type="hidden" name="on0" value="Select amount">Select amount</td>
+				</tr>
+				<tr>
+					<td>
+						<select name="os0">
+							<option value="10">10 $10.00 USD</option>
+							<option value="20">20 $20.00 USD</option>
+							<option value="30">30 $30.00 USD</option>
+							<option value="40">40 $40.00 USD</option>
+							<option value="100">100 $100.00 USD</option>
+						</select> 
+					</td>
+				</tr>
+				</table>
+				<input type="hidden" name="currency_code" value="USD">
+				<input type="hidden" name="encrypted" value="PAYPAL_KEY">
+				<input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_74x21.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+				<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+				</form>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

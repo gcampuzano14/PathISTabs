@@ -1,0 +1,107 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<p class="red_p">Select the desired options for this text parsing job</p>
+
+<form action="" method=post enctype=multipart/form-data>
+	    
+	<div class="container block" vertical-align:top;">		
+
+		<div style="display:inline">
+			{{ form_file.hidden_tag() }}
+			<div style="display:block">
+				{{form_file.openfile.label(class="ssf")}}  
+			</div>
+			{% if form_file.errors[form_file.openfile.id] | length  > 0  %}		
+				<p style="font-size:9px; color:red; font-style:italic; style="display:block"">{{form_file.errors[form_file.openfile.id][0]}}</p>
+			{% endif %}
+			{{ form_file.openfile(class_="the_input") }}
+		</div>  
+		<br>
+
+		<div style="display:inline">
+			{{ form.hidden_tag() }}
+			<div style="display:block">
+				{{ form.out_dir.label(class="ssf") }}
+			</div> 
+			{% if form.errors[form.out_dir.id] | length  > 0  %}		
+				<p style="font-size:9px; color:red; font-style:italic;">{{form.errors[form.out_dir.id][0]}}</p>
+			{% endif %}
+			{{ form.out_dir(class_="form-control")  }}
+		</div>  
+		<br>
+
+		<div style="display:inline">
+			<div style="display:block">
+				{{ form.choice_site.label(class="ssf") }}
+			</div> 
+			{% if form.errors[form.choice_site.id] | length  > 0  %}		
+				<p style="font-size:9px; color:red; font-style:italic;">{{form.errors[form.choice_site.id][0]}}</p>
+			{% endif %}
+			{{ form.choice_site(class_="form-control")  }}
+		</div>  
+		<br>
+
+		<div style="display:inline">
+			<div style="display:block"> 
+				{{ form.choice_spec.label(class="ssf") }} 
+			</div> 
+			{% if form.errors[form.choice_spec.id] | length  > 0  %}		
+				<p style="font-size:9px; color:red; font-style:italic;">{{form.errors[form.choice_spec.id][0]}}</p>
+			{% endif %}
+			{{ form.choice_spec(class_="form-control")  }}
+		</div>  
+		<br>
+		<input class="btn btn-danger btn-file" type=submit value=Run id=''> 
+
+	</div>
+</form>
+
+<p class="small">
+  <b>Author: German Campuzano-Zuluaga</b><br>
+  <b>gcampuzano81@gmail.com</b><br>
+  <a href="https://github.com/gcampuzano14">Source and downloads</a> by GCZ<br>
+</p>
+
+<script>
+	$("#choice_site").change(function() {
+		console.log($('#'+this.id).val())
+		if ($('#'+this.id).val() === 'JHS'){
+			var sites = ['', 'S', 'US', 'T', 'C', 'H', 'SB', 'M', 'F', 'A', 'SS', 'NS']
+			}
+		if ($('#'+this.id).val() === 'UM'){
+			var sites = ['', 'US', 'UB', 'UT', 'M', 'UC']
+			}	
+		if ($('#'+this.id).val() === 'meditech'){
+			var sites = ["", "C","UM","A"]
+		}
+		var sel = document.getElementById('choice_spec');
+		sel.options.length = 0;
+		var fragment = document.createDocumentFragment();
+		sites.forEach(function(site, index) {
+			var opt = document.createElement('option');
+	   		opt.innerHTML = site;
+	    	opt.value = site;
+	    	fragment.appendChild(opt);
+	    	});
+		sel.appendChild(fragment);
+		})
+	var about_modal = '<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"> \
+		<div class="modal-dialog" role="document"><div class="modal-content">\
+		<div class="modal-header">\
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close">\
+		<span aria-hidden="true">&times;</span></button>\
+		<h4 class="modal-title" id="myModalLabel">REFERENCE MANAGER</h4>\
+		</div>\
+		<div class="modal-body">\
+		 <div class="input_fields_wrap">\
+			<button class="add_field_button">Add More Fields</button>\
+			<div><input type="text" name="mytext[]"></div>\
+			</div>\
+		<div class="modal-footer">\
+		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>\
+		<button type="button" class="btn btn-primary">Save changes</button>\
+		</div></div></div></div> </div>';
+</script>
+
+{% endblock %}

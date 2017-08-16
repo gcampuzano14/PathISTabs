@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div class="main">
+
+  <div>
+    {% for key, value in case_counts.iteritems() %}
+    <p class="red_p">{{ key }} cases: {{ value }}</p>
+    {% endfor %}
+    <p class="red_p">Total number of individual specimens: {{ parsed_cases_counts.specimens }}</p>
+    <p class="red_p">Total number of individual patients (MRNs): {{ parsed_cases_counts.patients }}</p>
+    {% if excel_truncation    |  int() > 0 %}
+    <p class="red_p">The following cases have > 32759 characters in the DX field, thus, this field will be truncated if opened in MS Excel.<br>CASES THAT WILL BE TRUNCATED: {{ excel_truncation }}</p>
+    {% endif %}
+    <form action=""  method="POST">
+      <input class="btn btn-danger btn-file" type=submit value="Ok"  name="ok" method="post"> 
+    </form>
+  </div>
+</div>
+
+{% endblock %}
