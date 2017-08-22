@@ -1,0 +1,74 @@
+
+
+body { font-family: sans-serif; 
+background-color: black;
+}
+a, h1, h2 { color: #b3524d; }
+p.red_p { color: #ebd2cf; }
+
+svg{
+  width: 600px;
+  height: 120px;
+  display: block;
+  position: relative;
+  overflow: hidden; 
+  margin: 0 auto;
+  background: black;
+}
+
+.block label { display: inline-block; text-align: right; }
+
+h1 {font-size: 2em;}
+
+.page-header{padding-bottom:1px;margin:0px 0 0px}
+
+label {font-family: sans-serif}
+	.ssf{font-family: sans-serif;
+	opacity: 1;
+	color: white;
+	font-size: 100%;
+	}
+	.error{color: red;
+	}
+	.g{background:  white;
+	color: black}
+	.page {  width: 30em; padding: 0.8em; opacity: .95;
+    filter: alpha(opacity=100);}
+	.entries        { list-style: none; margin: 0; padding: 0; }
+	.entries li     { margin: 0.8em 1.2em; }
+	.entries li h2  { margin-left: -1em; }
+	.add-entry      { font-size: 0.9em; border-bottom: 1px solid #ccc; }
+	.add-entry dl   { font-weight: bold; }
+	.metanav        { text-align: right; font-size: 0.8em; padding: 0.3em;
+                  margin-bottom: 1em; background: #fafafa; }
+	.flash          { background: #dd6862; padding: 0.5em;
+                  border: 1px solid #aacbe2; }
+	.error          { background: #f0d6d6; padding: 0.5em; }
+
+input.the_input{}
+
+select.the_input{width: 150px; heigth: 100px}
+
+h4 { 
+ border:0 solid #fff; 
+ border-bottom-width:1px;
+ padding-bottom:10px;
+ text-align: center;
+}
+
+.form-control {
+    border-radius: 10px;
+}
+
+.wrapper {
+    text-align: center;
+}
+
+p.small {
+  font-size:0.8em;
+  opacity:0.5;
+  text-align:center;
+}
+
+
+

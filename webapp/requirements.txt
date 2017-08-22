@@ -1,0 +1,2 @@
+flask>=0.0.0
+flask_wtf>=0.0.0
