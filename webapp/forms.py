@@ -1,14 +1,14 @@
-from flask_wtf import Form
+from flask_wtf import FlaskForm
 from wtforms import StringField, validators, SelectField, SelectMultipleField, FileField
 from flask_wtf.file import FileAllowed, FileRequired
 
 
-class FileInputForm(Form):
+class FileInputForm(FlaskForm):
     # DATA
     openfile = FileField('Input txt file', validators=[FileAllowed(['txt'], 'Only text files are valid input!'), FileRequired()])
 
 
-class InputForm(Form):
+class InputForm(FlaskForm):
     # DATA SYNTH
     site_codes = [('', ''), ('UM', 'UM Copath NLSIIa'), ('JHS', 'JHS Copath NLSIIa')]
     # DATA

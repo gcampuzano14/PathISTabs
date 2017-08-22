@@ -16,7 +16,7 @@ if __name__ == "__main__":
     @fapp.route('/index',  methods=['GET', 'POST'])
     @fapp.route('/',  methods=['GET', 'POST'])
     def index():
-        form = fs.InputForm(request.form, csrf_enabled=False)
+        form = fs.InputForm()
         form_file = fs.FileInputForm()
         for f in os.listdir(os.path.join(os.getcwd(), 'temp', 'lock')):
             os.remove(os.path.join(os.getcwd(), 'temp', 'lock', f))
