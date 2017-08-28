@@ -5,6 +5,7 @@ import forms as fs
 from werkzeug import secure_filename
 import tempfile
 import copath_nls
+import meditech_nls
 
 
 if __name__ == "__main__":
@@ -37,12 +38,12 @@ if __name__ == "__main__":
             if request.form['choice_site'] == 'meditech':
                 form.choice_spec.choices = [('', ''), ('C', 'C'), ('UM', 'UM'),
                                             ('A', 'A')]
-            form_file.validate_on_submit()
+
             if (form.validate_on_submit() is False) or (form_file.validate_on_submit() is False):
                 flash('Input is incomplete!')
                 return render_template('index.html', form=form, form_file=form_file)
 
-            if (form.validate_on_submit() is True) and (form_file.validate_on_submit() is True):
+            if form.validate_on_submit() and form_file.validate_on_submit():
                 filename = secure_filename(form_file.openfile.data.filename)
                 form_file.openfile.data.save(os.path.join(os.getcwd(), 'temp', filename))
                 params = dict(request.form)
@@ -52,7 +53,7 @@ if __name__ == "__main__":
                 params['openfile'] = os.path.join(os.getcwd(), 'temp', filename)
                 params['choice_site'] = params['choice_site'][0]
                 session['params'] = params
-                return redirect(url_for('wait'))
+                return redirect(url_for('wait', site=request.form['choice_site']))
 
     @fapp.route('/wait',  methods=['GET', 'POST'])
     def wait():
@@ -60,13 +61,19 @@ if __name__ == "__main__":
             while len(os.listdir(os.path.join(os.getcwd(), 'temp', 'lock'))) > 0:
                 pass
             return redirect(url_for('index'))
+
         if request.method == 'GET':
             os.makedirs(session['params']['out_dir'])
             with tempfile.NamedTemporaryFile('w+b', dir=os.path.join(os.getcwd(), 'temp', 'lock'), delete=False) as tf:
                 temp_str = 'parsing copath NLS job'
                 tf.write(temp_str)
                 tempname = tf.name
-            case_counts, parsed_cases_counts, excel_truncation = copath_nls.copath_parse(session['params'])
+
+            if request.args['site'] in ['UM', 'JHS']:
+                case_counts, parsed_cases_counts, excel_truncation = copath_nls.copath_parse(session['params'])
+            elif request.args['site'] in ['meditech']:
+                case_counts, parsed_cases_counts, excel_truncation = meditech_nls.meditech_parse(session['params'])
+
             os.remove(tempname)
             os.remove(os.path.join(os.getcwd(), 'temp', session['params']['openfile']))
             return render_template('wait.html', case_counts=case_counts, parsed_cases_counts=parsed_cases_counts, excel_truncation=excel_truncation)
