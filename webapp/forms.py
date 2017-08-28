@@ -10,7 +10,7 @@ class FileInputForm(FlaskForm):
 
 class InputForm(FlaskForm):
     # DATA SYNTH
-    site_codes = [('', ''), ('UM', 'UM Copath NLSIIa'), ('JHS', 'JHS Copath NLSIIa')]
+    site_codes = [('', ''), ('UM', 'UM Copath NLSIIa'), ('JHS', 'JHS Copath NLSIIa'), ('meditech', 'MediTech')]
     # DATA
     out_dir = StringField('Name of project', validators=[validators.DataRequired()])
     choice_site = SelectField(label='Site', choices=site_codes, validators=[validators.Length(min=1)])
