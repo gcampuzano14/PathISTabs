@@ -38,12 +38,12 @@ if __name__ == "__main__":
             if request.form['choice_site'] == 'meditech':
                 form.choice_spec.choices = [('', ''), ('C', 'C'), ('UM', 'UM'),
                                             ('A', 'A')]
-            form_file.validate_on_submit()
+
             if (form.validate_on_submit() is False) or (form_file.validate_on_submit() is False):
                 flash('Input is incomplete!')
                 return render_template('index.html', form=form, form_file=form_file)
 
-            if (form.validate_on_submit() is True) and (form_file.validate_on_submit() is True):
+            if form.validate_on_submit() and form_file.validate_on_submit():
                 filename = secure_filename(form_file.openfile.data.filename)
                 form_file.openfile.data.save(os.path.join(os.getcwd(), 'temp', filename))
                 params = dict(request.form)

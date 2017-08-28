@@ -202,9 +202,11 @@ def cleaner(filetext):
     pagesubjmh = re.compile(r"University\s{1}of\s{1}Miami:\s{1}Miller\s{1}School\s{1}of\s{1}Medicine\s{1}Page\s{1}\d+\s{1}of\s{1}\d+", re.MULTILINE)
     pagesubum = re.compile(r"Jackson\s{1}Memorial\s{1}Hospital\s{1}Page\s{1}\d+\s{1}of\s{1}\d+", re.MULTILINE)
     totspec = re.compile(r"Total\s{1}Number\s{1}of\s{1}Specimen\(s\):\s{1}\d+", re.MULTILINE)
-    regex_collect = [dateline, selecrit, nliis, speclass, textsearch, accessrange, signrange, textprinte, agesex, genderline, partype, pagesubjmh, pagesubum, totspec]
-    with open(filetext, "r+") as fucked:
-        cleanstr = fucked.read()
+    regex_collect = [dateline, selecrit, nliis, speclass, textsearch,
+                     accessrange, signrange, textprinte, agesex, genderline,
+                     partype, pagesubjmh, pagesubum, totspec]
+    with open(filetext, "r+") as effed:
+        cleanstr = effed.read()
         for e in regex_collect:
             cleanstr = e.sub(" ", cleanstr)
     cleanstr = " ".join([cleanstr, "X11-111 Accession Date: 1/11/1111 11:11 Sign-Out Date: 1/1/1111 11:11\n"])
