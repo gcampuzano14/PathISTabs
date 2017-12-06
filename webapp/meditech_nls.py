@@ -45,7 +45,7 @@ def meditech_parse(params):
             filename = os.path.join(out_dir, fil)
             print('filename: ' + filename)
             os.open(filename, os.O_RDWR | os.O_CREAT)
-            with open(filename, 'wb') as out:
+            with open(filename, 'w') as out:
                 out.write(str(e[1]))
 
     return case_counts, parsed_cases_counts, excel_truncation
