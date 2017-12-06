@@ -4,7 +4,7 @@
 <div class="main">
 
   <div>
-    {% for key, value in case_counts.iteritems() %}
+    {% for key, value in case_counts.items() %}
     <p class="red_p">{{ key }} cases: {{ value }}</p>
     {% endfor %}
     <p class="red_p">Total number of individual specimens: {{ parsed_cases_counts.specimens }}</p>
