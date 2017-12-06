@@ -30,7 +30,7 @@ def copath_parse(params):
         parsed_cases_counts = {'specimens': str(0), 'patients': str(0)}
         excel_truncation = str(0)
     else:
-        print '\nMAKING OUTPUT DIRECTORY: ' + out_dir
+        print('\nMAKING OUTPUT DIRECTORY: ' + out_dir)
 
         open_diff_os.openFolder(out_dir)
     # reduce chunks
@@ -40,17 +40,17 @@ def copath_parse(params):
         for e in arr:
             fil = str(e[0]) + ".txt"
             filename = os.path.join(out_dir, fil)
-            print 'filename: ' + filename
+            print('filename: ' + filename)
             os.open(filename, os.O_RDWR | os.O_CREAT)
-            with open(filename, 'wb') as out:
+            with open(filename, 'w') as out:
                 out.write(str(e[1]))
 
     return case_counts, parsed_cases_counts, excel_truncation
 
 
 def reducer(caselist, choice_site):
-    print choice_site
-    print "\nMaking datasets..."
+    print(choice_site)
+    print("\nMaking datasets...")
     case_dic_access = {}
     case_dic_mrn = {}
     json_structure = []
@@ -88,7 +88,7 @@ def reducer(caselist, choice_site):
                                             "NAME": case[4], "MRN": case[5], "MRN_NUM": mrn, "DX": dxtext}
     # JSON mrn dictionary
     for case in case_dic_access:
-        # print case
+        # print(case)
         # case_dic_access["MRN_NUM"]
         case_dict = {"SURG_NUM": case, "ACCESS_DATE": case_dic_access[case]["ACCESS_DATE"], "SIGN_DATE":  case_dic_access[case]["SIGN_DATE"],
                      "SEX": case_dic_access[case]["SEX"], "AGE": case_dic_access[case]["AGE"], "DX": case_dic_access[case]["DX"]}
@@ -119,8 +119,8 @@ def reducer(caselist, choice_site):
         json_structure[count]["CASES"] = sorted_cases
         count += 1
     # create JSON mrn and JSON cases
-    json_mrn = json.dumps(json_structure, encoding="latin-1", indent=5)
-    json_cases = json.dumps(case_dic_access, encoding="latin-1", indent=5)
+    json_mrn = json.dumps(json_structure, indent=5)
+    json_cases = json.dumps(case_dic_access, indent=5)
     # CREATE TAB-DELIMITED DATA
     fin_data = "SURGINAL_NUMBER\tACCESS_DATE\tSIGN_DATE\tSEX\tAGE\tNAME\tMRN_NUM\tMRN\tDIAGNOSIS\n"
 
@@ -135,7 +135,7 @@ def reducer(caselist, choice_site):
         fin_data = ''.join([fin_data, line_tabfile])
         count += 1
     if len(templist) > 0:
-        print "The following cases have > 32759 characters in the DX field, thus, this field will be truncated if opened in MS Excel.\n CASES THAT WILL BE TRUNCATED: " + str(templist)
+        print("The following cases have > 32759 characters in the DX field, thus, this field will be truncated if opened in MS Excel.\n CASES THAT WILL BE TRUNCATED: " + str(templist))
         excel_truncation = str(templist)
     else:
         excel_truncation = str(0)
@@ -144,7 +144,7 @@ def reducer(caselist, choice_site):
               ', BAM!!\nJSON_MRN.txt file cases/patient are sorted by "ACCESS_DATE"')
         parsed_cases_counts = {'specimens': str(len(case_dic_access)), 'patients': str(len(json_structure))}
     elif count == 0:
-        print "\nNO CASES ARE AVAILABLE IN THE OUTPUT. MAKE SURE YOU USE AN ACCEPTED FILE FORMAT"
+        print("\nNO CASES ARE AVAILABLE IN THE OUTPUT. MAKE SURE YOU USE AN ACCEPTED FILE FORMAT")
         parsed_cases_counts = {'specimens': str(0), 'patients': str(0)}
     else:
         print("\nTOTAL SPECIMENS PARSED: " + str(len(case_dic_access)) +  ". TOTAL PATIENTS: " + str(len(json_structure)) +
@@ -155,7 +155,7 @@ def reducer(caselist, choice_site):
 
 
 def mapper(outtext_temp, choice_site, choice_spec):
-    print 'NUMBER OF ENTRIES PER CASE TYPE (ACCESSION NUMBER MAY BE REPEATED)'
+    print('NUMBER OF ENTRIES PER CASE TYPE (ACCESSION NUMBER MAY BE REPEATED)')
     caselist = []
     lentypes = len(choice_spec)
     count = 1
@@ -182,7 +182,7 @@ def mapper(outtext_temp, choice_site, choice_spec):
         caselist = caselist + li
         case_count = str(len(allcases))
         case_counts[str(e)] = str(case_count)
-        print '"%s" CASES: '%(str(e)) + str(case_count)
+        print('"%s" CASES: '%(str(e)) + str(case_count))
     # returns a list of list of cases captured with regex all_cases [[SURG_NUM, ACCESSION_DATE, SIGNOUT_DATE, SEX, AGE, NAME, MRN, DX], [...], ...]
     return caselist, case_counts
 

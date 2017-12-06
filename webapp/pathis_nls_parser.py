@@ -60,7 +60,7 @@ if __name__ == "__main__":
 
         if request.method == 'GET':
             os.makedirs(session['params']['out_dir'])
-            with tempfile.NamedTemporaryFile('w+b', dir=os.path.join(os.getcwd(), 'temp', 'lock'), delete=False) as tf:
+            with tempfile.NamedTemporaryFile('wt', dir=os.path.join(os.getcwd(), 'temp', 'lock'), delete=False) as tf:
                 temp_str = 'parsing copath NLS job'
                 tf.write(temp_str)
                 tempname = tf.name

@@ -47,7 +47,7 @@
 				{{ form.choice_spec.label(class="ssf") }} 
 			</div> 
 			{% if form.errors[form.choice_spec.id] | length  > 0  %}		
-				<p style="font-size:9px; color:red; font-style:italic;">{{form.errors[form.choice_spec.id][0]}}</p>
+				<p style="font-size: 9px; color:red; font-style:italic;">{{form.errors[form.choice_spec.id][0]}}</p>
 			{% endif %}
 			{{ form.choice_spec(class_="form-control")  }}
 		</div>  
@@ -56,8 +56,9 @@
 
 	</div>
 </form>
+<br>
 
-<p class="small">
+<p class=" red_p">
   <b>Author: German Campuzano-Zuluaga</b><br>
   <b>gcampuzano81@gmail.com</b><br>
   <a href="https://github.com/gcampuzano14">Source and downloads</a> by GCZ<br>
