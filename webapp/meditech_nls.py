@@ -136,8 +136,8 @@ def reducer(caselist, choice_site):
         json_structure[count]["CASES"] = sorted_cases
         count += 1
     # create JSON mrn and JSON cases
-    json_mrn = json.dumps(json_structure, encoding="latin-1", indent=5)
-    json_cases = json.dumps(case_dic_access, encoding="latin-1", indent=5)
+    json_mrn = json.dumps(json_structure,indent=5)
+    json_cases = json.dumps(case_dic_access, indent=5)
     # CREATE TAB-DELIMITED DATA
     fin_data = "SURGINAL_NUMBER\tACCESS_DATE\tSIGN_DATE\tSEX\tAGE\tNAME\tMRN_NUM\tMRN\tDIAGNOSIS\n"
     count = 0
