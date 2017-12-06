@@ -7,7 +7,6 @@ import tempfile
 import copath_nls
 import meditech_nls
 
-
 if __name__ == "__main__":
     ALLOWED_EXTENSIONS = set(['txt'])
     fapp = Flask(__name__)
@@ -17,6 +16,7 @@ if __name__ == "__main__":
     @fapp.route('/index',  methods=['GET', 'POST'])
     @fapp.route('/',  methods=['GET', 'POST'])
     def index():
+        
         form = fs.InputForm()
         form_file = fs.FileInputForm()
         for f in os.listdir(os.path.join(os.getcwd(), 'temp', 'lock')):
@@ -57,10 +57,6 @@ if __name__ == "__main__":
 
     @fapp.route('/wait',  methods=['GET', 'POST'])
     def wait():
-        if request.method == 'POST':
-            while len(os.listdir(os.path.join(os.getcwd(), 'temp', 'lock'))) > 0:
-                pass
-            return redirect(url_for('index'))
 
         if request.method == 'GET':
             os.makedirs(session['params']['out_dir'])
@@ -77,5 +73,10 @@ if __name__ == "__main__":
             os.remove(tempname)
             os.remove(os.path.join(os.getcwd(), 'temp', session['params']['openfile']))
             return render_template('wait.html', case_counts=case_counts, parsed_cases_counts=parsed_cases_counts, excel_truncation=excel_truncation)
+
+        if request.method == 'POST':
+            while len(os.listdir(os.path.join(os.getcwd(), 'temp', 'lock'))) > 0:
+                pass
+            return redirect(url_for('index'))
 
     fapp.run()
