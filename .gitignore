@@ -87,6 +87,7 @@ celerybeat-schedule
 venv/
 ENV/
 venv*
+*/vevn
 
 # Spyder project settings
 .spyderproject
@@ -108,3 +109,4 @@ venv*
 */old/*
 *OLD/*
 .fuse*
+*/job_output//*
