@@ -47,7 +47,7 @@
 				{{ form.choice_spec.label(class="ssf") }} 
 			</div> 
 			{% if form.errors[form.choice_spec.id] | length  > 0  %}		
-				<p style="font-size:9px; color:red; font-style:italic;">{{form.errors[form.choice_spec.id][0]}}</p>
+				<p style="font-size: 9px; color:red; font-style:italic;">{{form.errors[form.choice_spec.id][0]}}</p>
 			{% endif %}
 			{{ form.choice_spec(class_="form-control")  }}
 		</div>  
