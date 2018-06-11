@@ -198,11 +198,16 @@ def cleaner(filetext):
     pagesubjmh = re.compile(r'University\s{1}of\s{1}Miami:\s{1}Miller\s{1}School\s{1}of\s{1}Medicine\s{1}Page\s{1}\d+\s{1}of\s{1}\d+', re.MULTILINE)
     pagesubum = re.compile(r'Jackson\s{1}Memorial\s{1}Hospital\s{1}Page\s{1}\d+\s{1}of\s{1}\d+', re.MULTILINE)
     totspec = re.compile(r'Total\s{1}Number\s{1}of\s{1}Specimen\(s\):\s{1}\d+', re.MULTILINE)
+    nlii_ny = re.compile(r'Natural\s{1}Language\s{1}II\s{1}Search', re.MULTILINE)
+    race_ethnic_ny = re.compile(r'Race/Ethnic\sOrigin:.*$\n', re.MULTILINE)
+    procedure_ny = re.compile(r'Procedure:\s.*$\n', re.MULTILINE)
+    pagesubny = re.compile(r'New\sYork\sPresbyterian\sHospital\s{1}Page\s{1}\d+\s{1}of\s{1}\d+', re.MULTILINE)
 
     regex_collect = [dateline, selecrit, nliis, speclass, textsearch,
                      accessrange, signrange, textprinte, agesex, genderline,
-                     partype, pagesubjmh, pagesubum, totspec]
-    with open(filetext, "r+") as effed:
+                     partype, pagesubjmh, pagesubum, totspec,
+                     nlii_ny, race_ethnic_ny, procedure_ny, pagesubny]
+    with open(filetext, 'r+') as effed:
         cleanstr = effed.read()
         for e in regex_collect:
             cleanstr = e.sub('', cleanstr)
