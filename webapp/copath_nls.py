@@ -168,6 +168,10 @@ def mapper(outtext_temp, choice_site, choice_spec):
             allcases = re.findall(r'(?<!\S)(' + e + '\d{2}-\d+)\s{1}Accession\s{1}Date:\s{1}(\d+/\d+/\d{4})\s{1}\d{2}:\d{2}\s?\nGender:\s{1}(.+?)\s{1}Age:\s{1}(.+?)\s?\n'
                                   'Patient:\s{1}(.+?)\s{1}MRN:\s{1}(.*?)\s?\nSign-Out\s{1}Date:\s{1}(\d+/\d+/\d{4})\s{1}\d{2}:\d{2}\s?\n(.+?)'
                                   '(?=[A-Z]{1,2}\d{2}-\d+\s{1}Accession\s{1}Date:\s{1}\d+/\d+/\d{4}\s{1}\d{2}:\d{2}\s?\n)', outtext_temp, re.S)
+        elif choice_site == 'NY':
+            allcases = re.findall(r'(?<!\S)(' + e + '\d{2}-\d+)\s{1}Accession\s{1}Date:\s{1}(\d+/\d+/\d{4})\s{1}\d{2}:\d{2}\s{1}Sign-Out\s{1}Date:\s{1}(\d+/\d+/\d{4})\s{1}\d{2}:\d{2}\s?\n'
+                                  'Gender:\s{1}(.+?)\s{1}Race:\s{1}.+?\s{1}Age:\s{1}(.+?)\s?\nPatient:\s{1}(.+?)\s{1}MRN:\s{1}(.*?)\s?\n(.+?)'
+                                  '(?=[A-Z]{1,2}\d{2}-\d+\s{1}Accession\s{1}Date:\s{1}\d+/\d+/\d{4}\s{1}\d{2}:\d{2}\s{1}Sign-Out\s{1}Date:\s{1}\d+/\d+/\d{4}\s{1}\d{2}:\d{2}\s?\n)', outtext_temp, re.S)
 
         if len(allcases) == 0 and len(caselist) == 0 and typesleft == 0:
             case_count = 0
