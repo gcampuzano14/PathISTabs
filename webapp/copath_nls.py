@@ -67,7 +67,7 @@ def reducer(caselist, choice_site):
             case_fuse = str(case_dic_access[case[0]]['DX']) + '<<<FUSE>>> ' + dxtext
             case_dic_access[case[0]]['DX'] = case_fuse
         else:
-            if choice_site == "JHS":
+            if choice_site in ['JHS', 'NY']:
                 # clean MRN non-
                 mrn = re.sub(r'\D', '', str(case[6]), re.S)
                 mrn = re.sub(r'^[0]{1,}', '', mrn)

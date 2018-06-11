@@ -39,6 +39,9 @@ def index():
                                         ('SB', 'SB'), ('M', 'M'),
                                         ('F', 'F'), ('A', 'A'),
                                         ('SS', 'SS'), ('NS', 'NS')]
+        if request.form['choice_site'] == 'NY':
+            form.choice_spec.choices = [('', ''), ('S', 'S'),
+                                        ('C', 'C')]
         if request.form['choice_site'] == 'meditech':
             form.choice_spec.choices = [('', ''), ('C', 'C'), ('UM', 'UM'),
                                         ('A', 'A')]
