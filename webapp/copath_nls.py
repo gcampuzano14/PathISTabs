@@ -137,14 +137,14 @@ def reducer(caselist, choice_site):
         excel_truncation = str(0)
     if count > 99:
         print('\nTOTAL SPECIMENS PARSED: ' + str(len(case_dic_access)) + '. TOTAL PATIENTS: ' + str(len(json_structure)) +
-              ', BAM!!\nJSON_MRN.txt file cases/patient are sorted by 'ACCESS_DATE'')
+              ', BAM!!\nJSON_MRN.txt file cases/patient are sorted by "ACCESS_DATE"')
         parsed_cases_counts = {'specimens': str(len(case_dic_access)), 'patients': str(len(json_structure))}
     elif count == 0:
         print('\nNO CASES ARE AVAILABLE IN THE OUTPUT. MAKE SURE YOU USE AN ACCEPTED FILE FORMAT')
         parsed_cases_counts = {'specimens': str(0), 'patients': str(0)}
     else:
         print('\nTOTAL SPECIMENS PARSED: ' + str(len(case_dic_access)) +  '. TOTAL PATIENTS: ' + str(len(json_structure)) +
-              '\nJSON_MRN.txt file cases/patient are sorted by 'ACCESS_DATE'')
+              '\nJSON_MRN.txt file cases/patient are sorted by "ACCESS_DATE"')
         parsed_cases_counts = {'specimens': str(len(case_dic_access)), 'patients': str(len(json_structure))}
 
     return fin_data, json_mrn, json_cases, parsed_cases_counts, excel_truncation
@@ -182,7 +182,7 @@ def mapper(outtext_temp, choice_site, choice_spec):
         caselist = caselist + li
         case_count = str(len(allcases))
         case_counts[str(e)] = str(case_count)
-        print(''%s' CASES: '%(str(e)) + str(case_count))
+        print('"%s" CASES: '%(str(e)) + str(case_count))
     # returns a list of list of cases captured with regex all_cases [[SURG_NUM, ACCESSION_DATE, SIGNOUT_DATE, SEX, AGE, NAME, MRN, DX], [...], ...]
     return caselist, case_counts
 
