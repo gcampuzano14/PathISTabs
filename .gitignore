@@ -109,4 +109,4 @@ venv*
 */old/*
 *OLD/*
 .fuse*
-*/job_output//*
+*/job_output/*/
